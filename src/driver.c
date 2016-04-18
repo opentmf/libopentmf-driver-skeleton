@@ -53,3 +53,26 @@ const struct opentmf_driver_info* opentmf_drv_get_info()
 {
   return &info;
 }
+
+int opentmf_drv_get_device_list(char*** list)
+{
+  size_t length = 4;
+  char** items = malloc(length * sizeof(char*));
+
+  if(!items)
+    return OPENTMF_E_NO_MEMORY;
+
+  items[0] = "/os/dummy";
+  items[1] = "/dl/dummy";
+  items[2] = "/fg/dummy";
+  items[3] = NULL;
+
+  *list = items;
+
+  return OPENTMF_SUCCESS;
+}
+
+void opentmf_drv_free_device_list(char** list)
+{
+  free(list);
+}
